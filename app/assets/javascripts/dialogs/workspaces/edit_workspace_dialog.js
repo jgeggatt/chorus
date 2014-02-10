@@ -106,6 +106,12 @@ chorus.dialogs.EditWorkspace = chorus.dialogs.Base.include(
                 unprocessableEntity: function() {
                     /* Bypass page level error handling for this save */
                 },
+                success: function() {
+                    analytics.track('Workspace Settings Edited');
+                },
+                error: function(model, xhr, options) {
+                    analytics.track('Workspace Settings Error', {error: xhr.responseText});  // Segment.io integration
+                },
                 wait: true
             });
         },

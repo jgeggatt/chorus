@@ -178,6 +178,7 @@ chorus.dialogs.WorkfilesImport = chorus.dialogs.Base.extend({
             self.model = new chorus.models.Workfile();
             self.model.set(self.model.parse(JSON.parse(json.result)));
             chorus.toast('workfiles.uploaded', {fileName: self.model.get("fileName")});
+            analytics.track('WorkFile Uploaded', {fileName: self.model.get("fileName")});  // Segment.io integration
             self.closeModal();
             chorus.router.navigate(self.model.showUrl());
         }

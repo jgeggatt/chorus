@@ -16,5 +16,10 @@ chorus.dialogs.NotesNew = chorus.dialogs.MemoNew.extend({
         var subject = this.options.displayEntityType || this.options.entityType;
         this.placeholder = t("notes.placeholder", {noteSubject: subject});
         this._super("makeModel", arguments);
+    },
+
+    saved: function() {
+        analytics.track('Note Created');  // Segment.io integration
+        this._super("saved", arguments);
     }
 });

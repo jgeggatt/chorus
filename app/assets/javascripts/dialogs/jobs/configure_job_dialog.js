@@ -97,6 +97,7 @@ chorus.dialogs.ConfigureJob = chorus.dialogs.Base.include(chorus.Mixins.DialogFo
 
     create: function () {
         this.$("button.submit").startLoading('actions.saving');
+        analytics.track('Job Created', this.fieldValues());  // Segment.io integration
         this.getModel().save(this.fieldValues(), {wait: true, unprocessableEntity: $.noop});
     },
 

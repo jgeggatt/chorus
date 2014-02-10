@@ -51,6 +51,7 @@ chorus.dialogs.ConfigureMilestone = chorus.dialogs.Base.include(chorus.Mixins.Di
 
     modelSaved: function () {
         chorus.toast(this.message);
+        analytics.track('Milestone Created', this.fieldValues());  // Segment.io integration
         chorus.page.collection.trigger('invalidated');
         this.closeModal();
     },

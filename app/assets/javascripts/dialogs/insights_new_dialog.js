@@ -14,5 +14,10 @@ chorus.dialogs.InsightsNew = chorus.dialogs.MemoNew.extend({
             workspaceId: this.options.workspaceId
         });
         this._super("makeModel", arguments);
+    },
+
+    saved: function() {
+        analytics.track('Insight Created');  // Segment.io integration
+        this._super("saved", arguments);
     }
 });

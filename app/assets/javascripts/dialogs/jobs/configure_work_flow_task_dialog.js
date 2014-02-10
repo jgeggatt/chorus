@@ -67,6 +67,7 @@ chorus.dialogs.ConfigureWorkFlowTask = chorus.dialogs.PickItems.include(chorus.M
 
     modelSaved: function () {
         chorus.toast(this.message);
+        analytics.track('Work Flow Task Created', this.fieldValues());  // Segment.io integration
         this.model.trigger('invalidated');
         this.job.trigger('invalidated');
         this.closeModal();

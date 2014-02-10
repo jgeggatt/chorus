@@ -13,6 +13,7 @@ chorus.pages.SearchIndexPage = chorus.pages.Base.extend({
             attrs.searchIn = searchParams[0];
             attrs.entityType = searchParams[1];
         }
+        analytics.track('Search', attrs);   // Segment.io integration
         return attrs;
     },
 

@@ -63,6 +63,7 @@ chorus.dialogs.SandboxNew = chorus.dialogs.Base.extend({
 
     saved: function() {
         chorus.toast("sandbox.create.toast");
+        analytics.track('Sandbox Added', this.resource);  // Segment.io integration
         if (!this.options.noReload) {
             chorus.router.reload();
         }

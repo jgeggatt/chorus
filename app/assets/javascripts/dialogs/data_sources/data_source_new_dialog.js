@@ -84,7 +84,14 @@ chorus.dialogs.DataSourcesNew = chorus.dialogs.Base.extend({
         this.listenTo(this.model, "validationFailed", this.saveFailed);
 
         this.$("button.submit").startLoading("data_sources.new_dialog.saving");
-        this.model.save(values);
+        this.model.save(values, {
+            success: function() {
+                analytics.track('Data Source Created', values);  // Segment.io integration
+            },
+            error: function(model, xhr, options) {
+                analytics.track('Data Source Creation Error', {error: xhr.responseText});  // Segment.io integration
+            }
+        });
     },
 
     dataSourceClass: function() {

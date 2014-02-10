@@ -28,7 +28,14 @@ chorus.dialogs.WorkspacesNew = chorus.dialogs.Base.include(
         });
 
         this.$("button.submit").startLoading("actions.creating");
-        this.resource.save();
+        this.resource.save({}, {
+            success: function() {
+                analytics.track('Workspace Created', this.resource);  // Segment.io integration
+            },
+            error: function(model, xhr, options) {
+                analytics.track('Workspace Creation Error', {error: xhr.responseText});  // Segment.io integration
+            }
+        });
     },
 
     workspaceSaved:function () {

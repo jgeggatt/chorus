@@ -43,6 +43,7 @@ chorus.dialogs.WorkspaceEditMembers = chorus.dialogs.Base.extend({
         var users = _.map(ids, function (userId) {
             return self.collection.get(userId);
         });
+        analytics.track('Workspace Members Updated', {num_members: users.length});  // Segment.io integration
         self.members.reset(users);
         self.members.save();
     },
